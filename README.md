@@ -10,9 +10,9 @@ The system has three layers:
 - **Frontend dashboard** (HTML/CSS/JS): reads aggregated data and renders charts, tables, and filters for transaction analysis.
 
 ## Team Members
-- [Hassanat Ajoke Bello] — [Hassanah-dev006] — [role, e.g., ETL & Schema]
-- [Full Name 2] — [GitHub username] — [role, e.g., Categorization & Data Quality]
-- [Full Name 3] — [GitHub username] — [role, e.g., Frontend & JSON Contract]
+- [Hassanat Ajoke Bello] — [Hassanah-dev006] — [role: ETL & database]
+- [Full Name 2] — [GitHub username] — [role:  Categorization & Data Quality]
+- [Full Name 3] — [GitHub username] — [role: Frontend & JSON Contract]
 
 ## Project Status
 Week 1 — setup and planning. Architecture and Scrum board links to be added.
