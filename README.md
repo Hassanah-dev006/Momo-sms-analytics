@@ -1,8 +1,8 @@
-# MoMo SMS Data Processing — [TEAM NAME]
+# MoMo SMS Data Processing — [C1 Enterprise Web Dev TEAM 5]
 
 An enterprise fullstack application that ingests Mobile Money SMS data in XML, cleans and categorizes it using rule-based regex matching, persists it to SQLite, and visualizes the results in a static dashboard.
 
-## Team
+## Team Members
 
 - **Hassanat Bello** — Team lead
 - **Panom Achok**
