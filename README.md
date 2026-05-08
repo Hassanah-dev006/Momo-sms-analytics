@@ -5,7 +5,7 @@ An enterprise fullstack application that ingests Mobile Money SMS data in XML, c
 ## Team Members
 
 - **Hassanat Bello** — Team lead
-- **Panom Achok**
+- **Panom Achok**-Github username: Achok-kot
 - **Pegdwende Savadogo**- Github username: Pjael
 
 ## Links
