@@ -6,11 +6,11 @@ An enterprise fullstack application that ingests Mobile Money SMS data in XML, c
 
 - **Hassanat Bello** — Team lead
 - **Panom Achok**
-- **Pegdwende Savadogo**
+- **Pegdwende Savadogo**- Github username: Pjael
 
 ## Links
 
-- **Architecture diagram:** [paste draw.io]
+- **Architecture diagram:** [https://drive.google.com/file/d/1XBmV7prtwkCVz4PaZ_4CRRtMkf4WicOS/view?usp=drive_link]
 - **Scrum board (GitHub Projects):** [(https://github.com/users/Hassanah-dev006/projects/1)]
 
 ## Project overview
