@@ -339,3 +339,24 @@ JOIN transactions t ON u.user_id = t.sender_id
 GROUP BY u.user_id, u.phone_number, u.display_name
 ORDER BY txns_sent DESC, total_sent_rwf DESC
 LIMIT 5;
+
+
+
+-- --- Q5 (OPERATIONAL): ETL run summary from logs ---
+SELECT log_level, event_type, message, created_at
+FROM system_logs
+WHERE event_type IN ('ETL_START', 'ETL_COMPLETE', 'DUPLICATE_REF', 'PARSE_FAIL')
+ORDER BY created_at;
+ 
+-- --- Q6 (CRUD: UPDATE): Update a display name ---
+UPDATE users SET display_name = 'Anonymous User' WHERE user_id = 8;
+SELECT user_id, phone_number, display_name FROM users WHERE user_id = 8;
+ 
+-- --- Q7 (CRUD: DELETE w/ CASCADE) -- commented for safety; uncomment to demo ---
+-- DELETE FROM tags WHERE tag_name = 'flagged';
+-- SELECT * FROM transaction_tags;  -- verify rows referencing flagged tag are gone
+ 
+-- --- Q8 (CONSTRAINT TEST): negative amount should fail CHECK ---
+-- INSERT INTO transactions (external_ref, category_id, amount, transaction_date)
+-- VALUES ('TXN_BAD_001', 1, -500.00, NOW());
+-- Expected error: 3819 (HY000) Check constraint 'chk_transactions_amount_nonneg' violated.
