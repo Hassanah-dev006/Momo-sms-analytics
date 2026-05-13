@@ -205,3 +205,40 @@ INSERT INTO transaction_categories (category_code, display_name, description) VA
 ('PAYMENT',   'Merchant Payment',          'Payment to a registered business/merchant'),
 ('DEPOSIT',   'Cash Deposit',              'Cash deposited at an agent location'),
 ('BILL_PAY',  'Bill Payment',              'Utility or service bill payment (EUCL, water, etc.)');
+
+
+
+-- ----- tags (5 rows) -----
+INSERT INTO tags (tag_name, description) VALUES
+('high_value',  'Transaction amount >= 100,000 RWF'),
+('recurring',   'Recurring pattern detected (same parties, regular interval)'),
+('flagged',     'Manually flagged for review'),
+('weekend',     'Transaction occurred on Saturday or Sunday'),
+('after_hours', 'Transaction occurred between 22:00 and 06:00');
+
+
+-- ----- transactions (10 rows; varied categories, amounts, dates) -----
+INSERT INTO transactions
+    (external_ref, sender_id, receiver_id, category_id, amount, fee, balance_after, transaction_date, raw_message)
+VALUES
+('TXN20260401001', 1,    2,    1, 5000.00,    100.00,  45000.00,  '2026-04-01 09:15:00',
+    'You have transferred 5,000 RWF to Aline Uwase (250788222002). Fee: 100 RWF. New balance: 45,000 RWF. TxId: TXN20260401001'),
+('TXN20260402002', 2,    NULL, 2, 1000.00,    0.00,    44000.00,  '2026-04-02 14:30:00',
+    'You bought 1,000 RWF airtime for 250788222002. New balance: 44,000 RWF. TxId: TXN20260402002'),
+('TXN20260403003', 3,    5,    4, 25000.00,   250.00,  74750.00,  '2026-04-03 16:42:00',
+    'Payment of 25,000 RWF to Kigali Heights Mart confirmed. Fee: 250 RWF. New balance: 74,750 RWF. TxId: TXN20260403003'),
+('TXN20260404004', NULL, 1,    5, 50000.00,   0.00,    95000.00,  '2026-04-04 11:00:00',
+    'You have received a deposit of 50,000 RWF at Agent 4023. New balance: 95,000 RWF. TxId: TXN20260404004'),
+('TXN20260405005', 1,    NULL, 3, 20000.00,   400.00,  74600.00,  '2026-04-05 18:25:00',
+    'You have withdrawn 20,000 RWF at Agent 1187. Fee: 400 RWF. New balance: 74,600 RWF. TxId: TXN20260405005'),
+('TXN20260406006', 6,    5,    4, 150000.00,  1500.00, 200000.00, '2026-04-06 13:10:00',
+    'Payment of 150,000 RWF to Kigali Heights Mart confirmed. Fee: 1,500 RWF. New balance: 200,000 RWF. TxId: TXN20260406006'),
+('TXN20260411007', 7,    3,    1, 3000.00,    50.00,   12000.00,  '2026-04-11 10:00:00',
+    'You have transferred 3,000 RWF to Patrick Nshuti. Fee: 50 RWF. New balance: 12,000 RWF. TxId: TXN20260411007'),
+('TXN20260412008', 8,    NULL, 6, 8500.00,    100.00,  21400.00,  '2026-04-12 09:30:00',
+    'Bill payment of 8,500 RWF to EUCL successful. Fee: 100 RWF. New balance: 21,400 RWF. TxId: TXN20260412008'),
+('TXN20260418009', 2,    7,    1, 7000.00,    100.00,  37000.00,  '2026-04-18 20:45:00',
+    'You have transferred 7,000 RWF to Eric Habimana. Fee: 100 RWF. New balance: 37,000 RWF. TxId: TXN20260418009'),
+('TXN20260425010', 6,    5,    4, 175000.00,  1750.00, 25000.00,  '2026-04-25 23:50:00',
+    'Payment of 175,000 RWF to Kigali Heights Mart confirmed. Fee: 1,750 RWF. New balance: 25,000 RWF. TxId: TXN20260425010');
+ 
