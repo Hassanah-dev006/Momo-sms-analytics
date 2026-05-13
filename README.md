@@ -109,6 +109,14 @@ source venv/bin/activate          # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env              # Then edit .env with your DB credentials
 
+
+## Database Initialization
+
+bash
+mysql -u <user> -p < database/database_setup.sql
+
+This creates all tables, indexes, constraints, and inserts sample data (5+ records per main table).
+
 ## Run
 
 ```bash
