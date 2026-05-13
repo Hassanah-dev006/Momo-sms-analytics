@@ -145,3 +145,38 @@ CREATE TABLE tags (
     INDEX idx_txntags_tag (tag_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
   COMMENT='Junction table resolving M:N between transactions and tags';
+
+
+-- =====================================================================
+-- TABLE: system_logs
+-- Purpose: ETL operational logging. transaction_id is nullable because
+--          some events are global (ETL start/stop, parse failures with
+--          no associated transaction).
+-- =====================================================================
+CREATE TABLE system_logs (
+    log_id          BIGINT          NOT NULL AUTO_INCREMENT
+                                    COMMENT 'Surrogate primary key',
+    log_level       ENUM('INFO','WARN','ERROR') NOT NULL
+                                    COMMENT 'Severity level',
+    event_type      VARCHAR(50)     NOT NULL
+                                    COMMENT 'Event class: PARSE_SUCCESS, PARSE_FAIL, DUPLICATE_REF, etc.',
+    transaction_id  BIGINT          NULL
+                                    COMMENT 'FK to transactions if the event relates to one; else NULL',
+    message         TEXT            NULL
+                                    COMMENT 'Free-text log message',
+    created_at      DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP
+                                    COMMENT 'Log timestamp',
+ 
+    PRIMARY KEY (log_id),
+ 
+    CONSTRAINT fk_logs_transaction
+        FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id)
+        ON DELETE SET NULL ON UPDATE CASCADE,
+ 
+    INDEX idx_logs_level_date (log_level, created_at),
+    INDEX idx_logs_event_type (event_type)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+  COMMENT='ETL pipeline operational log';
+ 
+ 
+
