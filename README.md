@@ -124,6 +124,13 @@ bash scripts/run_etl.sh
 
 This parses data/raw/momo.xml, cleans and categorizes records, loads them into the database, and exports data/processed/dashboard.json.
 
+## Serving the Dashboard
+
+bash
+bash scripts/serve_frontend.sh
+
+Then open http://localhost:8000 in a browser.
+
 ## Run
 
 ```bash
