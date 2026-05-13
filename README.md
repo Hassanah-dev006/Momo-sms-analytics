@@ -59,7 +59,23 @@ Project structure
 │   ├── run_etl.sh
 │   ├── export_json.sh
 │   └── serve_frontend.sh
-└── tests/                            
+└── tests/  
+
+
+
+
+Database Design
+
+Entity Overview
+The database is built around six entities:
+
+users — Customer accounts identified by phone number
+transactions — System of record for all MoMo transactions
+transaction_categories — Transaction type classification (transfer, airtime, etc.)
+tags — Analytical labels applied to transactions
+transaction_tags — Junction table resolving the many-to-many between transactions and tags
+system_logs — ETL pipeline event log with optional reference to specific transactions.
+
 
 
 ## Setup
