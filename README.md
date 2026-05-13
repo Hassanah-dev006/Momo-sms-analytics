@@ -63,6 +63,7 @@ Records that fail parsing or categorization are written to `data/logs/dead_lette
 │   └── serve_frontend.sh
 └── tests/  
 
+```
 
 ## Database Design
 
@@ -117,21 +118,7 @@ mysql -u <user> -p < database/database_setup.sql
 
 This creates all tables, indexes, constraints, and inserts sample data (5+ records per main table).
 
-## Run
 
-```bash
-# 1. Run the ETL pipeline (parse → clean → categorize → load to SQLite)
-bash scripts/run_etl.sh
-
-# 2. Export aggregates for the dashboard
-bash scripts/export_json.sh
-
-# 3. Serve the frontend
-bash scripts/serve_frontend.sh
-# Open http://localhost:8000
-```
-
-Re-run `export_json.sh` whenever the underlying database changes; the dashboard reads only from the exported JSON.
 
 ## Tests
 
