@@ -95,7 +95,10 @@ system_logs — ETL pipeline event log with optional reference to specific trans
 
 ## Key Design Decisions
 
-Money is stored as DECIMAL(15,2), never FLOAT. Financial aggregations must reconcile to the cent; floating-point accumulates rounding errors.
+#1 Money is stored as DECIMAL(15,2), never FLOAT. Financial aggregations must reconcile to the cent; floating-point accumulates rounding errors.
+
+#2 sender_id and receiver_id are nullable foreign keys. Some MoMo activities (airtime, balance checks, service fees) have no second party; nullability reflects the domain rather than forcing phantom records.
+
 
 ## Run
 
