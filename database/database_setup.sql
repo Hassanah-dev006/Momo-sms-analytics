@@ -269,3 +269,26 @@ INSERT INTO system_logs (log_level, event_type, transaction_id, message, created
 ('WARN',  'DUPLICATE_REF',   NULL, 'Skipped duplicate external_ref=TXN20260401001 during re-run','2026-04-05 02:00:00'),
 ('INFO',  'TAG_APPLIED',     10,   'Auto-tagged transaction as high_value and after_hours',    '2026-04-25 23:50:06'),
 ('INFO',  'ETL_COMPLETE',    NULL, 'ETL batch complete: 10 parsed, 1 failed, 1 duplicate skipped','2026-04-25 23:55:00');
+
+
+
+-- =====================================================================
+-- VERIFICATION QUERIES (CRUD + ANALYTICAL)
+-- Run these after the inserts above. Capture output as screenshots for
+-- the design document. Each query is labeled with what it demonstrates.
+-- =====================================================================
+ 
+-- --- Q1 (READ + JOIN): All transactions with sender, receiver, category resolved ---
+SELECT
+    t.transaction_id,
+    t.external_ref,
+    s.phone_number  AS sender_phone,
+    r.phone_number  AS receiver_phone,
+    c.display_name  AS category,
+    t.amount,
+    t.transaction_date
+FROM transactions t
+LEFT JOIN users s                   ON t.sender_id   = s.user_id
+LEFT JOIN users r                   ON t.receiver_id = r.user_id
+INNER JOIN transaction_categories c ON t.category_id = c.category_id
+ORDER BY t.transaction_date;
