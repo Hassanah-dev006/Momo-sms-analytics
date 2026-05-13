@@ -26,6 +26,7 @@ Records that fail parsing or categorization are written to `data/logs/dead_lette
 
 ```
 ..
+├.
 ├── README.md
 ├── .env.example                      # Database connection template
 ├── .gitignore                        # Excludes raw data, DB files, secrets
@@ -61,8 +62,12 @@ Records that fail parsing or categorization are written to `data/logs/dead_lette
 │   ├── run_etl.sh
 │   ├── export_json.sh
 │   └── serve_frontend.sh
-└── tests/  
+└── tests/
+    ├── test_parse_xml.py
+    ├── test_clean_normalize.py
+    └── test_categorize.py
 
+```
 
 ## Database Design
 
@@ -102,50 +107,23 @@ Prerequisites
 
 ## Installation
 
+```bash
 git clone <github-repo-url>
 cd <repo-name>
 python -m venv venv
 source venv/bin/activate          # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env              # Then edit .env with your DB credentials
-
+```
 
 ## Database Initialization
 
-bash
+```bash
 mysql -u <user> -p < database/database_setup.sql
-
+```
 This creates all tables, indexes, constraints, and inserts sample data (5+ records per main table).
 
-## Running the ETL Pipeline
 
-bash
-bash scripts/run_etl.sh
-
-This parses data/raw/momo.xml, cleans and categorizes records, loads them into the database, and exports data/processed/dashboard.json.
-
-## Serving the Dashboard
-
-bash
-bash scripts/serve_frontend.sh
-
-Then open http://localhost:8000 in a browser.
-
-## Run
-
-```bash
-# 1. Run the ETL pipeline (parse → clean → categorize → load to SQLite)
-bash scripts/run_etl.sh
-
-# 2. Export aggregates for the dashboard
-bash scripts/export_json.sh
-
-# 3. Serve the frontend
-bash scripts/serve_frontend.sh
-# Open http://localhost:8000
-```
-
-Re-run `export_json.sh` whenever the underlying database changes; the dashboard reads only from the exported JSON.
 
 ## Tests
 
