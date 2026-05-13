@@ -103,6 +103,8 @@ system_logs — ETL pipeline event log with optional reference to specific trans
 
 #4 The M:N relationship is between transactions and tags, resolved through the transaction_tags junction. Categories are 1:M (each transaction has exactly one category), but tags are analytical and a transaction can carry multiple ("high-value," "recurring," "flagged-for-review").
 
+#5 Indexes on transaction_date and category_id support the dashboard's most frequent query patterns: time-windowed aggregation and category-level breakdowns.
+
 ## Run
 
 ```bash
