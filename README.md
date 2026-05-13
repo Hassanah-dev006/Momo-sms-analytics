@@ -11,10 +11,12 @@ An enterprise fullstack application that ingests Mobile Money SMS data in XML, c
 ## Links
 
 - **Architecture diagram:** [https://drive.google.com/file/d/1XBmV7prtwkCVz4PaZ_4CRRtMkf4WicOS/view?usp=drive_link]
+
 - **Scrum board (GitHub Projects):** [(https://github.com/users/Hassanah-dev006/projects/1)]
 
-**Full design rationale:** [https://docs.google.com/document/d/1A-k8qb-JMTOKtzK_CQtCwIetedUqeH9p2O098XtPXPU/edit?usp=sharing]
-**Entity Relationship Diagram:** docs/erd_diagram.png
+- **Full design rationale:** [https://docs.google.com/document/d/1A-k8qb-JMTOKtzK_CQtCwIetedUqeH9p2O098XtPXPU/edit?usp=sharing]
+
+- **Entity Relationship Diagram:** docs/erd_diagram.png
 
 ## Project overview
 
@@ -30,7 +32,7 @@ XML input  ->  ETL pipeline  ->  MySQL database  ->  JSON export  ->  Dashboard
 (raw SMS)      (parse, clean,     (normalized           (aggregates       (HTML/CSS/JS,
                categorize, load)   transactions)         for frontend)     reads JSON)
 
-               
+
 The ETL runs in batch. The dashboard is a static frontend that reads from a pre-computed data/processed/dashboard.json file. There is an optional FastAPI layer in api/ for direct database queries.
 
 ## Project structure
