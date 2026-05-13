@@ -19,43 +19,42 @@ The pipeline is one-way and batch-oriented: raw XML in `data/raw/momo.xml` is pa
 
 Records that fail parsing or categorization are written to `data/logs/dead_letter/` rather than dropped silently, so data quality issues stay visible.
 
-Project structure
-.
+## Project structure
+
+```
+..
 ├── README.md
-├── .env.example
-├── .gitignore
-├── requirements.txt
-├── index.html                        
-├── web/                              
+├── .env.example                      # Database connection template
+├── .gitignore                        # Excludes raw data, DB files, secrets
+├── requirements.txt                  # Python dependencies
+├── index.html                        # Dashboard entry point
+├── web/
 │   ├── styles.css
 │   ├── chart_handler.js
 │   └── assets/
-├── data/                             
-│   ├── raw/                         
-│   ├── processed/                    
-│   └── logs/                         
-├── database/                         
-│   └── database_setup.sql            
-├── docs/                          
-│   ├── erd.png                       
-│   ├── architecture.png              
-│   └── design_document.pdf          
-├── examples/                         
-│   ├── transaction.json
-│   ├── user.json
-│   ├── category.json
-│   └── full_transaction.json         
-├── etl/                              
-│   ├── parse_xml.py
-│   ├── clean_normalize.py
-│   ├── categorize.py
-│   ├── load_db.py
-│   └── run.py                        
-├── api/                             
-│   ├── app.py
-│   ├── db.py
-│   └── schemas.py
-├── scripts/                       
+├── data/
+│   ├── raw/                          # Input XML (git-ignored)
+│   ├── processed/                    # Dashboard JSON output
+│   ├── db.sqlite3 / momo.sql         # Database file or dump
+│   └── logs/
+│       ├── etl.log
+│       └── dead_letter/              # Unparsed XML records
+├── etl/
+│   ├── parse_xml.py                  # XML parsing
+│   ├── clean_normalize.py            # Amount, date, phone normalization
+│   ├── categorize.py                 # Transaction type rules
+│   ├── load_db.py                    # Database insert with idempotency
+│   └── run.py                        # End-to-end pipeline entry point
+├── api/                              # Optional FastAPI service
+├── database/
+│   └── database_setup.sql            # Schema DDL + sample DML
+├── docs/
+│   ├── erd_diagram.png               # Entity relationship diagram
+│   ├── design_rationale.md           # Database design justification
+│   └── data_dictionary.md            # Column-level documentation
+├── examples/
+│   └── json_schemas/                 # JSON serialization examples
+├── scripts/
 │   ├── run_etl.sh
 │   ├── export_json.sh
 │   └── serve_frontend.sh
