@@ -122,3 +122,26 @@ CREATE TABLE tags (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
   COMMENT='Analytical tags applicable to transactions (M:N with transactions)';
  
+
+
+
+ CREATE TABLE transaction_tags (
+    transaction_id  BIGINT          NOT NULL
+                                    COMMENT 'FK to transactions, part of composite PK',
+    tag_id          INT             NOT NULL
+                                    COMMENT 'FK to tags, part of composite PK',
+    tagged_at       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP
+                                    COMMENT 'When this tag was applied',
+ 
+    PRIMARY KEY (transaction_id, tag_id),
+ 
+    CONSTRAINT fk_txntags_transaction
+        FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_txntags_tag
+        FOREIGN KEY (tag_id) REFERENCES tags(tag_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+ 
+    INDEX idx_txntags_tag (tag_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+  COMMENT='Junction table resolving M:N between transactions and tags';
