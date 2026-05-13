@@ -100,6 +100,14 @@ Prerequisites
 * MySQL 8.0+ (CHECK constraints are not enforced in older versions)
 * A modern browser for the dashboard
 
+## Installation
+
+git clone <github-repo-url>
+cd <repo-name>
+python -m venv venv
+source venv/bin/activate          # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env              # Then edit .env with your DB credentials
 
 ## Run
 
