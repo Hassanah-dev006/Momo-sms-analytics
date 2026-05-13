@@ -92,6 +92,11 @@ transaction_tags — Junction table resolving the many-to-many between transacti
 system_logs — ETL pipeline event log with optional reference to specific transactions.
 
 
+
+## Key Design Decisions
+
+Money is stored as DECIMAL(15,2), never FLOAT. Financial aggregations must reconcile to the cent; floating-point accumulates rounding errors.
+
 ## Run
 
 ```bash
