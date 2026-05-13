@@ -292,3 +292,15 @@ LEFT JOIN users s                   ON t.sender_id   = s.user_id
 LEFT JOIN users r                   ON t.receiver_id = r.user_id
 INNER JOIN transaction_categories c ON t.category_id = c.category_id
 ORDER BY t.transaction_date;
+
+
+-- --- Q2 (ANALYTICAL): Total volume and transaction count per category ---
+SELECT
+    c.display_name         AS category,
+    COUNT(*)               AS txn_count,
+    SUM(t.amount)          AS total_volume_rwf,
+    ROUND(AVG(t.amount),2) AS avg_amount_rwf
+FROM transactions t
+JOIN transaction_categories c ON t.category_id = c.category_id
+GROUP BY c.category_id, c.display_name
+ORDER BY total_volume_rwf DESC;
