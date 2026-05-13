@@ -62,21 +62,6 @@ Records that fail parsing or categorization are written to `data/logs/dead_lette
 
 
 
-
-Database Design
-
-Entity Overview
-The database is built around six entities:
-
-users — Customer accounts identified by phone number
-transactions — System of record for all MoMo transactions
-transaction_categories — Transaction type classification (transfer, airtime, etc.)
-tags — Analytical labels applied to transactions
-transaction_tags — Junction table resolving the many-to-many between transactions and tags
-system_logs — ETL pipeline event log with optional reference to specific transactions.
-
-
-
 ## Setup
 
 Requires Python 3.10+ and a POSIX shell (Git Bash works on Windows).
@@ -91,6 +76,21 @@ cp .env.example .env
 ```
 
 Place the provided `momo.xml` into `data/raw/`. The folder is git-ignored, so the file will not be committed.
+
+
+
+## Database Design
+
+Entity Overview
+The database is built around six entities:
+
+users — Customer accounts identified by phone number
+transactions — System of record for all MoMo transactions
+transaction_categories — Transaction type classification (transfer, airtime, etc.)
+tags — Analytical labels applied to transactions
+transaction_tags — Junction table resolving the many-to-many between transactions and tags
+system_logs — ETL pipeline event log with optional reference to specific transactions.
+
 
 ## Run
 
