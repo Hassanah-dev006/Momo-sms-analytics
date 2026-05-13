@@ -101,4 +101,24 @@ CREATE TABLE transactions (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
   COMMENT='Core fact table: one row per parsed MoMo SMS transaction';
  
+
+
+
+-- =====================================================================
+-- TABLE: tags
+-- Purpose: Analytical tags applied to transactions (high_value,
+--          recurring, flagged, etc.). One side of the M:N relationship.
+-- =====================================================================
+CREATE TABLE tags (
+    tag_id          INT             NOT NULL AUTO_INCREMENT
+                                    COMMENT 'Surrogate primary key',
+    tag_name        VARCHAR(50)     NOT NULL
+                                    COMMENT 'Tag identifier: high_value, recurring, flagged, etc.',
+    description     TEXT            NULL
+                                    COMMENT 'Optional explanation of when this tag applies',
+ 
+    PRIMARY KEY (tag_id),
+    UNIQUE KEY uk_tags_name (tag_name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+  COMMENT='Analytical tags applicable to transactions (M:N with transactions)';
  
