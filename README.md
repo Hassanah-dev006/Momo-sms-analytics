@@ -13,6 +13,9 @@ An enterprise fullstack application that ingests Mobile Money SMS data in XML, c
 - **Architecture diagram:** [https://drive.google.com/file/d/1XBmV7prtwkCVz4PaZ_4CRRtMkf4WicOS/view?usp=drive_link]
 - **Scrum board (GitHub Projects):** [(https://github.com/users/Hassanah-dev006/projects/1)]
 
+**Full design rationale:** docs/design_rationale.md
+**Entity Relationship Diagram:** docs/erd_diagram.png
+
 ## Project overview
 
 The pipeline is one-way and batch-oriented: raw XML in `data/raw/momo.xml` is parsed, cleaned, categorized, and loaded into a SQLite database at `data/db.sqlite3`. A separate export step writes pre-aggregated metrics to `data/processed/dashboard.json`, which the static frontend reads directly. There is no backend server in front of the database — the dashboard is a static HTML/CSS/JS bundle served over plain HTTP.
