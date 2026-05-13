@@ -19,24 +19,48 @@ The pipeline is one-way and batch-oriented: raw XML in `data/raw/momo.xml` is pa
 
 Records that fail parsing or categorization are written to `data/logs/dead_letter/` rather than dropped silently, so data quality issues stay visible.
 
-## Project structure
-
-```
+Project structure
 .
 ├── README.md
 ├── .env.example
+├── .gitignore
 ├── requirements.txt
-├── index.html                 # Dashboard entry
-├── web/                       # Frontend assets (CSS, JS)
-├── data/
-│   ├── raw/                   # XML input (git-ignored)
-│   ├── processed/             # dashboard.json (git-ignored)
-│   ├── db.sqlite3             # SQLite DB (git-ignored)
-│   └── logs/                  # ETL logs + dead-letter records
-├── etl/                       # Parse → clean → categorize → load → export
-├── scripts/                   # Shell entry points
-└── tests/                     # Unit tests for ETL stages
-```
+├── index.html                        # Dashboard entry
+├── web/                              # Frontend assets (CSS, JS)
+│   ├── styles.css
+│   ├── chart_handler.js
+│   └── assets/
+├── data/                             # Runtime data (mostly git-ignored)
+│   ├── raw/                          # Provided XML input
+│   ├── processed/                    # dashboard.json exported here
+│   └── logs/                         # ETL logs + dead-letter records
+├── database/                         # Database schema and seed data
+│   └── database_setup.sql            # MySQL DDL + sample DML + verification queries
+├── docs/                             # Design documentation
+│   ├── erd.png                       # Entity Relationship Diagram
+│   ├── architecture.png              # System architecture diagram
+│   └── design_document.pdf           # Full design doc with rationale + screenshots
+├── examples/                         # JSON serialization examples
+│   ├── transaction.json
+│   ├── user.json
+│   ├── category.json
+│   └── full_transaction.json         # Nested example with all related data
+├── etl/                              # Extract / transform / load
+│   ├── parse_xml.py
+│   ├── clean_normalize.py
+│   ├── categorize.py
+│   ├── load_db.py
+│   └── run.py                        # CLI entry point
+├── api/                              # Optional FastAPI layer (bonus)
+│   ├── app.py
+│   ├── db.py
+│   └── schemas.py
+├── scripts/                          # Shell entry points
+│   ├── run_etl.sh
+│   ├── export_json.sh
+│   └── serve_frontend.sh
+└── tests/                            # Unit tests for ETL stages
+
 
 ## Setup
 
