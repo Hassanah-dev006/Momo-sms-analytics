@@ -105,6 +105,8 @@ system_logs — ETL pipeline event log with optional reference to specific trans
 
 #5 Indexes on transaction_date and category_id support the dashboard's most frequent query patterns: time-windowed aggregation and category-level breakdowns.
 
+#6 CHECK (amount >= 0) and NOT NULL constraints enforce domain invariants at the database layer rather than relying on application code.
+
 ## Run
 
 ```bash
