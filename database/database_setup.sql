@@ -31,3 +31,22 @@ CREATE TABLE users (
   COMMENT='Transaction parties (senders and receivers) extracted from MoMo SMS';
  
  
+-- =====================================================================
+-- TABLE: transaction_categories
+-- Purpose: Lookup table for transaction types: TRANSFER, AIRTIME,
+--          CASHOUT, PAYMENT, DEPOSIT, etc. Populated once at load time.
+-- =====================================================================
+CREATE TABLE transaction_categories (
+    category_id     INT             NOT NULL AUTO_INCREMENT
+                                    COMMENT 'Surrogate primary key',
+    category_code   VARCHAR(50)     NOT NULL
+                                    COMMENT 'Stable code used by ETL: TRANSFER, AIRTIME, CASHOUT, etc.',
+    display_name    VARCHAR(100)    NOT NULL
+                                    COMMENT 'Human-readable name for dashboard display',
+    description     TEXT            NULL
+                                    COMMENT 'Optional longer description of the category',
+ 
+    PRIMARY KEY (category_id),
+    UNIQUE KEY uk_categories_code (category_code)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+  COMMENT='Lookup table classifying transactions by type';
