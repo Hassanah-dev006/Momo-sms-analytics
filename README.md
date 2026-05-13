@@ -22,6 +22,17 @@ The pipeline is one-way and batch-oriented: raw XML in `data/raw/momo.xml` is pa
 
 Records that fail parsing or categorization are written to `data/logs/dead_letter/` rather than dropped silently, so data quality issues stay visible.
 
+The system ingests MoMo SMS notifications exported as XML, parses each message into structured fields, classifies the transaction by type (transfer, airtime, bill payment, etc.), stores normalized records in a MySQL database, and serves aggregated metrics to a static dashboard.
+
+## Architecture at a Glance
+
+XML input  ->  ETL pipeline  ->  MySQL database  ->  JSON export  ->  Dashboard
+(raw SMS)      (parse, clean,     (normalized           (aggregates       (HTML/CSS/JS,
+               categorize, load)   transactions)         for frontend)     reads JSON)
+
+               
+The ETL runs in batch. The dashboard is a static frontend that reads from a pre-computed data/processed/dashboard.json file. There is an optional FastAPI layer in api/ for direct database queries.
+
 ## Project structure
 
 ```
@@ -74,12 +85,12 @@ Records that fail parsing or categorization are written to `data/logs/dead_lette
 Entity Overview
 The database is built around six entities:
 
-users — Customer accounts identified by phone number
-transactions — System of record for all MoMo transactions
-transaction_categories — Transaction type classification (transfer, airtime, etc.)
-tags — Analytical labels applied to transactions
-transaction_tags — Junction table resolving the many-to-many between transactions and tags
-system_logs — ETL pipeline event log with optional reference to specific transactions.
+* users — Customer accounts identified by phone number
+* transactions — System of record for all MoMo transactions
+* transaction_categories — Transaction type classification (transfer, airtime, etc.)
+* tags — Analytical labels applied to transactions
+* transaction_tags — Junction table resolving the many-to-many between transactions and tags
+* system_logs — ETL pipeline event log with optional reference to specific transactions.
 
 
 
@@ -125,6 +136,22 @@ This creates all tables, indexes, constraints, and inserts sample data (5+ recor
 
 
 
+## Running the ETL Pipeline
+```bash
+bash scripts/run_etl.sh
+```
+
+This parses data/raw/momo.xml, cleans and categorizes records, loads them into the database, and exports data/processed/dashboard.json.
+
+
+## Serving the Dashboard
+```bash
+bash scripts/serve_frontend.sh
+```
+
+Then open http://localhost:8000 in a browser.
+
+
 ## Tests
 
 ```bash
@@ -152,4 +179,18 @@ These are the choices that aren't obvious from the directory layout:
 
 ## Status
 
-Week 1: scaffolding, architecture, and team workflow. ETL implementation begins week 2.
+# Deliverables Status
+Week 1
+
+ * Team GitHub repository with collaborators
+ * Project directory structure
+ * High-level system architecture diagram
+ * Scrum board with initial tasks
+
+Week 2
+
+ * Entity Relationship Diagram in docs/
+ * Database setup SQL script in database/
+ * JSON schema examples in examples/
+ * Updated README with database design
+ * Database design PDF document (in progress)
