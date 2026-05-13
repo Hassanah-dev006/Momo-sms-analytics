@@ -50,3 +50,55 @@ CREATE TABLE transaction_categories (
     UNIQUE KEY uk_categories_code (category_code)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
   COMMENT='Lookup table classifying transactions by type';
+
+
+CREATE TABLE transactions (
+    transaction_id      BIGINT          NOT NULL AUTO_INCREMENT
+                                        COMMENT 'Surrogate primary key',
+    external_ref        VARCHAR(100)    NOT NULL
+                                        COMMENT 'MoMo TxId from SMS; idempotency key for ETL',
+    sender_id           INT             NULL
+                                        COMMENT 'FK to users; NULL when no sender (e.g. airtime)',
+    receiver_id         INT             NULL
+                                        COMMENT 'FK to users; NULL when no receiver (e.g. cashout)',
+    category_id         INT             NOT NULL
+                                        COMMENT 'FK to transaction_categories',
+    amount              DECIMAL(15,2)   NOT NULL
+                                        COMMENT 'Transaction amount in RWF',
+    fee                 DECIMAL(15,2)   NOT NULL DEFAULT 0.00
+                                        COMMENT 'Transaction fee in RWF',
+    balance_after       DECIMAL(15,2)   NULL
+                                        COMMENT 'Account balance after transaction, if reported in SMS',
+    transaction_date    DATETIME        NOT NULL
+                                        COMMENT 'When the transaction occurred (from SMS body)',
+    raw_message         TEXT            NULL
+                                        COMMENT 'Original SMS text, retained for audit/debugging',
+ 
+    PRIMARY KEY (transaction_id),
+    UNIQUE KEY uk_transactions_external_ref (external_ref),
+ 
+    CONSTRAINT fk_transactions_sender
+        FOREIGN KEY (sender_id) REFERENCES users(user_id)
+        ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT fk_transactions_receiver
+        FOREIGN KEY (receiver_id) REFERENCES users(user_id)
+        ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT fk_transactions_category
+        FOREIGN KEY (category_id) REFERENCES transaction_categories(category_id)
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+ 
+    CONSTRAINT chk_transactions_amount_nonneg
+        CHECK (amount >= 0),
+    CONSTRAINT chk_transactions_fee_nonneg
+        CHECK (fee >= 0),
+    CONSTRAINT chk_transactions_parties_differ
+        CHECK (sender_id IS NULL OR receiver_id IS NULL OR sender_id <> receiver_id),
+ 
+    INDEX idx_transactions_date (transaction_date),
+    INDEX idx_transactions_category (category_id),
+    INDEX idx_transactions_sender (sender_id),
+    INDEX idx_transactions_receiver (receiver_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+  COMMENT='Core fact table: one row per parsed MoMo SMS transaction';
+ 
+ 
