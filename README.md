@@ -64,24 +64,6 @@ Records that fail parsing or categorization are written to `data/logs/dead_lette
 └── tests/  
 
 
-
-## Setup
-
-Requires Python 3.10+ and a POSIX shell (Git Bash works on Windows).
-
-```bash
-git clone [https://github.com/Hassanah-dev006/Momo-sms-analytics.git]
-cd [Momo-sms-analytics]
-python -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-cp .env.example .env
-```
-
-Place the provided `momo.xml` into `data/raw/`. The folder is git-ignored, so the file will not be committed.
-
-
-
 ## Database Design
 
 Entity Overview
@@ -109,6 +91,15 @@ system_logs — ETL pipeline event log with optional reference to specific trans
 #5 Indexes on transaction_date and category_id support the dashboard's most frequent query patterns: time-windowed aggregation and category-level breakdowns.
 
 #6 CHECK (amount >= 0) and NOT NULL constraints enforce domain invariants at the database layer rather than relying on application code.
+
+
+## Setup and Run
+Prerequisites
+
+* Python 3.10+
+* MySQL 8.0+ (CHECK constraints are not enforced in older versions)
+* A modern browser for the dashboard
+
 
 ## Run
 
