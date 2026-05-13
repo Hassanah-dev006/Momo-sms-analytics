@@ -187,7 +187,7 @@ CREATE TABLE system_logs (
  
 -- ----- users (8 rows; mix of personal and business) -----
 INSERT INTO users (phone_number, display_name, first_seen_at, is_business) VALUES
-('+250788111001', 'Jean Bosco',          '2026-04-01 08:12:00', 0),
+('+250788111001', 'Panom Kot',          '2026-04-01 08:12:00', 0),
 ('+250788222002', 'Aline Uwase',         '2026-04-02 14:33:00', 0),
 ('+250788333003', 'Patrick Nshuti',      '2026-04-03 10:05:00', 0),
 ('+250788444004', 'MTN Rwanda Airtime',  '2026-04-01 00:00:00', 1),
@@ -195,3 +195,13 @@ INSERT INTO users (phone_number, display_name, first_seen_at, is_business) VALUE
 ('+250788666006', 'Chantal Ingabire',    '2026-04-05 09:47:00', 0),
 ('+250788777007', 'Eric Habimana',       '2026-04-06 11:15:00', 0),
 ('+250788888008', NULL,                  '2026-04-07 18:02:00', 0);
+
+
+-- ----- transaction_categories (6 rows; real MoMo transaction types) -----
+INSERT INTO transaction_categories (category_code, display_name, description) VALUES
+('TRANSFER',  'Person-to-Person Transfer', 'MoMo transfer between two individual accounts'),
+('AIRTIME',   'Airtime Purchase',          'Direct airtime top-up to a phone number'),
+('CASHOUT',   'Cash Withdrawal',           'Withdrawal at an agent or ATM'),
+('PAYMENT',   'Merchant Payment',          'Payment to a registered business/merchant'),
+('DEPOSIT',   'Cash Deposit',              'Cash deposited at an agent location'),
+('BILL_PAY',  'Bill Payment',              'Utility or service bill payment (EUCL, water, etc.)');
