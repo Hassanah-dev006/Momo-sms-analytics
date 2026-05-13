@@ -179,4 +179,19 @@ CREATE TABLE system_logs (
   COMMENT='ETL pipeline operational log';
  
  
-
+-- =====================================================================
+-- SAMPLE DATA (DML)
+-- Inserted in FK dependency order: parents before children.
+-- All amounts in RWF. Phone numbers follow Rwandan +250 format.
+-- =====================================================================
+ 
+-- ----- users (8 rows; mix of personal and business) -----
+INSERT INTO users (phone_number, display_name, first_seen_at, is_business) VALUES
+('+250788111001', 'Jean Bosco',          '2026-04-01 08:12:00', 0),
+('+250788222002', 'Aline Uwase',         '2026-04-02 14:33:00', 0),
+('+250788333003', 'Patrick Nshuti',      '2026-04-03 10:05:00', 0),
+('+250788444004', 'MTN Rwanda Airtime',  '2026-04-01 00:00:00', 1),
+('+250788555005', 'Kigali Heights Mart', '2026-04-04 16:20:00', 1),
+('+250788666006', 'Chantal Ingabire',    '2026-04-05 09:47:00', 0),
+('+250788777007', 'Eric Habimana',       '2026-04-06 11:15:00', 0),
+('+250788888008', NULL,                  '2026-04-07 18:02:00', 0);
