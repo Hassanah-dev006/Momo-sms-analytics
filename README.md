@@ -26,6 +26,7 @@ Records that fail parsing or categorization are written to `data/logs/dead_lette
 
 ```
 ..
+├.
 ├── README.md
 ├── .env.example                      # Database connection template
 ├── .gitignore                        # Excludes raw data, DB files, secrets
@@ -61,7 +62,10 @@ Records that fail parsing or categorization are written to `data/logs/dead_lette
 │   ├── run_etl.sh
 │   ├── export_json.sh
 │   └── serve_frontend.sh
-└── tests/  
+└── tests/
+    ├── test_parse_xml.py
+    ├── test_clean_normalize.py
+    └── test_categorize.py
 
 ```
 
@@ -103,13 +107,14 @@ Prerequisites
 
 ## Installation
 
+```bash
 git clone <github-repo-url>
 cd <repo-name>
 python -m venv venv
 source venv/bin/activate          # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env              # Then edit .env with your DB credentials
-
+```
 
 ## Database Initialization
 
