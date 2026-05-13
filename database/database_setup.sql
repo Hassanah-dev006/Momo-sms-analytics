@@ -326,3 +326,16 @@ WHERE t.transaction_id IN (
     HAVING COUNT(DISTINCT tg2.tag_name) = 2
 )
 GROUP BY t.transaction_id, t.external_ref, t.amount;
+
+
+-- --- Q4 (ANALYTICAL): Top 5 most active senders ---
+SELECT
+    u.phone_number,
+    u.display_name,
+    COUNT(*)      AS txns_sent,
+    SUM(t.amount) AS total_sent_rwf
+FROM users u
+JOIN transactions t ON u.user_id = t.sender_id
+GROUP BY u.user_id, u.phone_number, u.display_name
+ORDER BY txns_sent DESC, total_sent_rwf DESC
+LIMIT 5;
