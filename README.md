@@ -101,6 +101,8 @@ system_logs — ETL pipeline event log with optional reference to specific trans
 
 #3 external_ref is UNIQUE on the transactions table. This is the MoMo transaction ID extracted from each SMS and acts as the ETL idempotency key — re-running the parser on the same XML cannot create duplicates.
 
+#4 The M:N relationship is between transactions and tags, resolved through the transaction_tags junction. Categories are 1:M (each transaction has exactly one category), but tags are analytical and a transaction can carry multiple ("high-value," "recurring," "flagged-for-review").
+
 ## Run
 
 ```bash
