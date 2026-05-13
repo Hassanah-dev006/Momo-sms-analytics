@@ -242,3 +242,18 @@ VALUES
 ('TXN20260425010', 6,    5,    4, 175000.00,  1750.00, 25000.00,  '2026-04-25 23:50:00',
     'Payment of 175,000 RWF to Kigali Heights Mart confirmed. Fee: 1,750 RWF. New balance: 25,000 RWF. TxId: TXN20260425010');
  
+
+
+
+INSERT INTO transaction_tags (transaction_id, tag_id, tagged_at) VALUES
+(6,  1, '2026-04-06 13:10:05'),  -- high_value
+(6,  2, '2026-04-25 23:51:00'),  -- recurring (detected after TXN010 confirmed pattern)
+(10, 1, '2026-04-25 23:50:05'),  -- high_value
+(10, 2, '2026-04-25 23:51:00'),  -- recurring
+(10, 5, '2026-04-25 23:50:05'),  -- after_hours
+(9,  4, '2026-04-18 20:45:05'),  -- weekend
+(4,  3, '2026-04-04 12:00:00'),  -- flagged
+(1,  2, '2026-04-11 10:00:10'),  -- recurring
+(7,  2, '2026-04-11 10:00:10'),  -- recurring
+(8,  4, '2026-04-12 09:30:05'),  -- weekend
+(3,  3, '2026-04-03 17:00:00');  -- flagged (large merchant payment from new user)
