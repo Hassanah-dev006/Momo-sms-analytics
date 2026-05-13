@@ -117,6 +117,13 @@ mysql -u <user> -p < database/database_setup.sql
 
 This creates all tables, indexes, constraints, and inserts sample data (5+ records per main table).
 
+## Running the ETL Pipeline
+
+bash
+bash scripts/run_etl.sh
+
+This parses data/raw/momo.xml, cleans and categorizes records, loads them into the database, and exports data/processed/dashboard.json.
+
 ## Run
 
 ```bash
