@@ -360,3 +360,10 @@ SELECT user_id, phone_number, display_name FROM users WHERE user_id = 8;
 -- INSERT INTO transactions (external_ref, category_id, amount, transaction_date)
 -- VALUES ('TXN_BAD_001', 1, -500.00, NOW());
 -- Expected error: 3819 (HY000) Check constraint 'chk_transactions_amount_nonneg' violated.
+
+
+-- --- Q9 (CONSTRAINT TEST): duplicate external_ref should fail UNIQUE ---
+-- INSERT INTO transactions (external_ref, category_id, amount, transaction_date)
+-- VALUES ('TXN20260401001', 1, 1000.00, NOW());
+-- Expected error: 1062 (23000) Duplicate entry for key 'uk_transactions_external_ref'.
+ 
