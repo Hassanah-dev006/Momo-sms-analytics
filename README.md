@@ -25,41 +25,41 @@ Project structure
 ├── .env.example
 ├── .gitignore
 ├── requirements.txt
-├── index.html                        # Dashboard entry
-├── web/                              # Frontend assets (CSS, JS)
+├── index.html                        
+├── web/                              
 │   ├── styles.css
 │   ├── chart_handler.js
 │   └── assets/
-├── data/                             # Runtime data (mostly git-ignored)
-│   ├── raw/                          # Provided XML input
-│   ├── processed/                    # dashboard.json exported here
-│   └── logs/                         # ETL logs + dead-letter records
-├── database/                         # Database schema and seed data
-│   └── database_setup.sql            # MySQL DDL + sample DML + verification queries
-├── docs/                             # Design documentation
-│   ├── erd.png                       # Entity Relationship Diagram
-│   ├── architecture.png              # System architecture diagram
-│   └── design_document.pdf           # Full design doc with rationale + screenshots
-├── examples/                         # JSON serialization examples
+├── data/                             
+│   ├── raw/                         
+│   ├── processed/                    
+│   └── logs/                         
+├── database/                         
+│   └── database_setup.sql            
+├── docs/                          
+│   ├── erd.png                       
+│   ├── architecture.png              
+│   └── design_document.pdf          
+├── examples/                         
 │   ├── transaction.json
 │   ├── user.json
 │   ├── category.json
-│   └── full_transaction.json         # Nested example with all related data
-├── etl/                              # Extract / transform / load
+│   └── full_transaction.json         
+├── etl/                              
 │   ├── parse_xml.py
 │   ├── clean_normalize.py
 │   ├── categorize.py
 │   ├── load_db.py
-│   └── run.py                        # CLI entry point
-├── api/                              # Optional FastAPI layer (bonus)
+│   └── run.py                        
+├── api/                             
 │   ├── app.py
 │   ├── db.py
 │   └── schemas.py
-├── scripts/                          # Shell entry points
+├── scripts/                       
 │   ├── run_etl.sh
 │   ├── export_json.sh
 │   └── serve_frontend.sh
-└── tests/                            # Unit tests for ETL stages
+└── tests/                            
 
 
 ## Setup
