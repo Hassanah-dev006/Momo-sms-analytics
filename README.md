@@ -99,6 +99,7 @@ system_logs — ETL pipeline event log with optional reference to specific trans
 
 #2 sender_id and receiver_id are nullable foreign keys. Some MoMo activities (airtime, balance checks, service fees) have no second party; nullability reflects the domain rather than forcing phantom records.
 
+#3 external_ref is UNIQUE on the transactions table. This is the MoMo transaction ID extracted from each SMS and acts as the ETL idempotency key — re-running the parser on the same XML cannot create duplicates.
 
 ## Run
 
