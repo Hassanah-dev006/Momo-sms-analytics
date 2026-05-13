@@ -304,3 +304,25 @@ FROM transactions t
 JOIN transaction_categories c ON t.category_id = c.category_id
 GROUP BY c.category_id, c.display_name
 ORDER BY total_volume_rwf DESC;
+
+
+
+-- --- Q3 (M:N IN ACTION): Transactions tagged BOTH high_value AND recurring ---
+-- Demonstrates the junction table justifying its existence
+SELECT
+    t.transaction_id,
+    t.external_ref,
+    t.amount,
+    GROUP_CONCAT(tg.tag_name ORDER BY tg.tag_name SEPARATOR ', ') AS all_tags
+FROM transactions t
+JOIN transaction_tags tt ON t.transaction_id = tt.transaction_id
+JOIN tags tg             ON tt.tag_id        = tg.tag_id
+WHERE t.transaction_id IN (
+    SELECT tt2.transaction_id
+    FROM transaction_tags tt2
+    JOIN tags tg2 ON tt2.tag_id = tg2.tag_id
+    WHERE tg2.tag_name IN ('high_value', 'recurring')
+    GROUP BY tt2.transaction_id
+    HAVING COUNT(DISTINCT tg2.tag_name) = 2
+)
+GROUP BY t.transaction_id, t.external_ref, t.amount;
