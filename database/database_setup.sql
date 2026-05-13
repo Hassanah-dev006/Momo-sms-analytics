@@ -257,3 +257,15 @@ INSERT INTO transaction_tags (transaction_id, tag_id, tagged_at) VALUES
 (7,  2, '2026-04-11 10:00:10'),  -- recurring
 (8,  4, '2026-04-12 09:30:05'),  -- weekend
 (3,  3, '2026-04-03 17:00:00');  -- flagged (large merchant payment from new user)
+
+
+-- ----- system_logs (8 rows; mix of INFO/WARN/ERROR, mix of global and transaction-linked) -----
+INSERT INTO system_logs (log_level, event_type, transaction_id, message, created_at) VALUES
+('INFO',  'ETL_START',       NULL, 'ETL batch started: source=momo.xml',                      '2026-04-01 06:00:00'),
+('INFO',  'PARSE_SUCCESS',   1,    'Successfully parsed TRANSFER transaction',                 '2026-04-01 09:15:01'),
+('INFO',  'PARSE_SUCCESS',   2,    'Successfully parsed AIRTIME transaction',                  '2026-04-02 14:30:01'),
+('WARN',  'MISSING_BALANCE', 3,    'balance_after missing in SMS body; left NULL',             '2026-04-03 16:42:02'),
+('ERROR', 'PARSE_FAIL',      NULL, 'Could not parse SMS body: malformed timestamp at line 247','2026-04-04 10:30:00'),
+('WARN',  'DUPLICATE_REF',   NULL, 'Skipped duplicate external_ref=TXN20260401001 during re-run','2026-04-05 02:00:00'),
+('INFO',  'TAG_APPLIED',     10,   'Auto-tagged transaction as high_value and after_hours',    '2026-04-25 23:50:06'),
+('INFO',  'ETL_COMPLETE',    NULL, 'ETL batch complete: 10 parsed, 1 failed, 1 duplicate skipped','2026-04-25 23:55:00');
