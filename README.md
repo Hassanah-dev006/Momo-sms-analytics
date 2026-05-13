@@ -22,21 +22,46 @@ Records that fail parsing or categorization are written to `data/logs/dead_lette
 ## Project structure
 
 ```
-.
+..
 ├── README.md
-├── .env.example
-├── requirements.txt
-├── index.html                 # Dashboard entry
-├── web/                       # Frontend assets (CSS, JS)
+├── .env.example                      # Database connection template
+├── .gitignore                        # Excludes raw data, DB files, secrets
+├── requirements.txt                  # Python dependencies
+├── index.html                        # Dashboard entry point
+├── web/
+│   ├── styles.css
+│   ├── chart_handler.js
+│   └── assets/
 ├── data/
-│   ├── raw/                   # XML input (git-ignored)
-│   ├── processed/             # dashboard.json (git-ignored)
-│   ├── db.sqlite3             # SQLite DB (git-ignored)
-│   └── logs/                  # ETL logs + dead-letter records
-├── etl/                       # Parse → clean → categorize → load → export
-├── scripts/                   # Shell entry points
-└── tests/                     # Unit tests for ETL stages
-```
+│   ├── raw/                          # Input XML (git-ignored)
+│   ├── processed/                    # Dashboard JSON output
+│   ├── db.sqlite3 / momo.sql         # Database file or dump
+│   └── logs/
+│       ├── etl.log
+│       └── dead_letter/              # Unparsed XML records
+├── etl/
+│   ├── parse_xml.py                  # XML parsing
+│   ├── clean_normalize.py            # Amount, date, phone normalization
+│   ├── categorize.py                 # Transaction type rules
+│   ├── load_db.py                    # Database insert with idempotency
+│   └── run.py                        # End-to-end pipeline entry point
+├── api/                              # Optional FastAPI service
+├── database/
+│   └── database_setup.sql            # Schema DDL + sample DML
+├── docs/
+│   ├── erd_diagram.png               # Entity relationship diagram
+│   ├── design_rationale.md           # Database design justification
+│   └── data_dictionary.md            # Column-level documentation
+├── examples/
+│   └── json_schemas/                 # JSON serialization examples
+├── scripts/
+│   ├── run_etl.sh
+│   ├── export_json.sh
+│   └── serve_frontend.sh
+└── tests/
+    ├── test_parse_xml.py
+    ├── test_clean_normalize.py
+    └── test_categorize.py
 
 ## Setup
 
