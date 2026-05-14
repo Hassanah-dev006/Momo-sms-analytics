@@ -1,0 +1,64 @@
+{
+    "generated_at": "2026-05-14T08:00:00Z",
+    "period": {
+        "start": "2026-03-01T00:00:00Z",
+        "end": "2026-03-31T23:59:59Z"
+    },
+    "summary": {
+        "total_transactions": 1247,
+        "total_volume_rwf": 18450000.00,
+        "average_transaction_rwf": 14795.51,
+        "unique_users": 312
+    },
+    "by_category": [
+        {
+            "category_code": "TRANSFER_OUT",
+            "display_name": "Money Sent",
+            "transaction_count": 482,
+            "total_amount": 9120000.00
+        },
+        {
+            "category_code": "TRANSFER_IN",
+            "display_name": "Money Received",
+            "transaction_count": 401,
+            "total_amount": 7230000.00
+        },
+        {
+            "category_code": "AIRTIME",
+            "display_name": "Airtime Purchase",
+            "transaction_count": 287,
+            "total_amount": 1850000.00
+        },
+        {
+            "category_code": "PAYMENT",
+            "display_name": "Bill Payment",
+            "transaction_count": 77,
+            "total_amount": 250000.00
+        }
+    ],
+    "daily_volume": [
+        {
+            "date": "2026-03-01",
+            "count": 38,
+            "amount": 612000.00
+        },
+        {
+            "date": "2026-03-02",
+            "count": 41,
+            "amount": 587500.00
+        },
+        {
+            "date": "2026-03-03",
+            "count": 45,
+            "amount": 698200.00
+        }
+    ],
+    "top_senders": [
+        {
+            "user_id": 42,
+            "display_name": "Jean Bizimana",
+            "transaction_count": 28,
+            "total_sent": 420000.00
+        }
+    ]
+}
