@@ -1,12 +1,12 @@
 {
-  "transaction_id": 1048576,
-  "external_ref": "TX-76234901-MOMO",
-  "sender_id": 42,
-  "receiver_id": 89,
-  "category_id": 3,
-  "amount": 25000.00,
-  "fee": 100.00,
-  "balance_after": 142350.50,
-  "transaction_date": "2026-03-15T14:22:08Z",
-  "raw_message": "You have sent 25,000 RWF to Marie Uwase (+250722987654). Fee: 100 RWF. New balance: 142,350.50 RWF. TxId: TX-76234901-MOMO. Date: 15/03/2026 14:22"
+    "transaction_id": 1048576,
+    "external_ref": "TX-76234901-MOMO",
+    "sender_id": 42,
+    "receiver_id": 89,
+    "category_id": 3,
+    "amount": 25000.00,
+    "fee": 100.00,
+    "balance_after": 142350.50,
+    "transaction_date": "2026-03-15T14:22:08Z",
+    "raw_message": "You have sent 25,000 RWF to Marie Uwase (+250722987654). Fee: 100 RWF. New balance: 142,350.50 RWF. TxId: TX-76234901-MOMO. Date: 15/03/2026 14:22"
 }
