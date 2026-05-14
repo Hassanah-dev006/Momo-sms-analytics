@@ -11,5 +11,10 @@
         "phone_number": "+250788123456",
         "display_name": "Jean Bizimana",
         "is_business": false
-    }
-}
+    },
+    "receiver": {
+        "user_id": 89,
+        "phone_number": "+250722987654",
+        "display_name": "Marie Uwase",
+        "is_business": false
+    },
