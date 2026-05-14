@@ -16,7 +16,7 @@ An enterprise fullstack application that ingests Mobile Money SMS data in XML, c
 
 - **Full design rationale:** [https://docs.google.com/document/d/1A-k8qb-JMTOKtzK_CQtCwIetedUqeH9p2O098XtPXPU/edit?usp=sharing]
 
-- **Entity Relationship Diagram:** docs/erd_diagram.png
+- **Entity Relationship Diagram:**[https://drive.google.com/file/d/16Q6ZZj9OsMweolz-ARHRZahhRRoAN2kJ/view?usp=drive_link]
 
 ## Project overview
 
