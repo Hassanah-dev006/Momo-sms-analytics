@@ -1,0 +1,5 @@
+{
+  "tag_id": 7,
+  "tag_name": "high_value",
+  "description": "Transactions exceeding 100,000 RWF threshold"
+}
