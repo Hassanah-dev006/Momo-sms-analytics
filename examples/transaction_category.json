@@ -1,0 +1,6 @@
+{
+  "category_id": 3,
+  "category_code": "TRANSFER_OUT",
+  "display_name": "Money Sent",
+  "description": "Funds transferred from this account to another mobile money account"
+}
