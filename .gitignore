@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Environment
+.env
+
+
+# Data — input, output, and runtime state (ignore contents, keep folders)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/logs/*.log
+data/logs/dead_letter/*
+!data/logs/dead_letter/.gitkeep
