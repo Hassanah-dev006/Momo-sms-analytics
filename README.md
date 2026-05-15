@@ -1,6 +1,6 @@
 # MoMo SMS Data Processing — [C1 Enterprise Web Dev TEAM 5]
 
-An enterprise fullstack application that ingests Mobile Money SMS data in XML, cleans and categorizes it using rule-based regex matching, persists it to SQLite, and visualizes the results in a static dashboard.
+An enterprise fullstack application that ingests Mobile Money SMS data in XML, cleans and categorizes it using rule-based regex matching, persists it to MySQL, and visualizes the results in a static dashboard.
 
 ## Team Members
 
@@ -20,7 +20,7 @@ An enterprise fullstack application that ingests Mobile Money SMS data in XML, c
 
 ## Project overview
 
-The pipeline is one-way and batch-oriented: raw XML in `data/raw/momo.xml` is parsed, cleaned, categorized, and loaded into a SQLite database at `data/db.sqlite3`. A separate export step writes pre-aggregated metrics to `data/processed/dashboard.json`, which the static frontend reads directly. There is no backend server in front of the database — the dashboard is a static HTML/CSS/JS bundle served over plain HTTP.
+The pipeline is one-way and batch-oriented: raw XML in `data/raw/momo.xml` is parsed, cleaned, categorized, and loaded into a MySQL database. Schema and seed data live in `database/database_setup.sql`. A separate export step writes pre-aggregated metrics to `data/processed/dashboard.json`, which the static frontend reads directly. There is no backend server in front of the database — the dashboard is a static HTML/CSS/JS bundle served over plain HTTP.
 
 Records that fail parsing or categorization are written to `data/logs/dead_letter/` rather than dropped silently, so data quality issues stay visible.
 
@@ -52,7 +52,7 @@ The ETL runs in batch. The dashboard is a static frontend that reads from a pre-
 ├── data/
 │   ├── raw/                          # Input XML (git-ignored)
 │   ├── processed/                    # Dashboard JSON output
-│   ├── db.sqlite3 / momo.sql         # Database file or dump
+│   ├── (MySQL database; schema in database/database_setup.sql)
 │   └── logs/
 │       ├── etl.log
 │       └── dead_letter/              # Unparsed XML records
@@ -166,7 +166,7 @@ Unit tests cover XML parsing, normalization (amounts, dates, phone numbers), and
 
 These are the choices that aren't obvious from the directory layout:
 
-- **SQLite over Postgres/MySQL.** Single-file, zero-config, sufficient for the assignment's data volume. Trades concurrent-write performance for simplicity, which is the right trade here.
+- - **MySQL with InnoDB.** The assignment requires MySQL 8.0+ for enforced CHECK constraints and ENUM types — both used in our schema for domain invariants (non-negative amounts, log levels). InnoDB gives us row-level locking and proper foreign key enforcement, which matters for the ETL's concurrent inserts and referential integrity guarantees.
 - **Static JSON over a live API.** The frontend reads a pre-built `dashboard.json` instead of querying a server. This eliminates an entire deployment surface (CORS, server hosting, request handling) at the cost of staleness — the dashboard is only as fresh as the last `export_json.sh` run. Acceptable because the data source itself is a one-time XML dump.
 - **Rule-based regex categorization.** SMS bodies follow predictable provider-issued templates, so deterministic regex rules are more accurate and debuggable than ML classification at this scale. Rules live in `etl/categorize.py` and are covered by unit tests so changes don't silently misclassify past data.
 - **Dead-letter queue instead of silent drops.** Any record that fails parsing or categorization is written to `data/logs/dead_letter/` with the original snippet preserved. This makes data-quality failures auditable rather than invisible.
