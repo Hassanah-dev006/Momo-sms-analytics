@@ -10,13 +10,13 @@ An enterprise fullstack application that ingests Mobile Money SMS data in XML, c
 
 ## Links
 
-- **Architecture diagram:** [https://drive.google.com/file/d/1XBmV7prtwkCVz4PaZ_4CRRtMkf4WicOS/view?usp=drive_link]
+- - **Architecture diagram:** [`docs/architecture.svg`](docs/architecture.svg)
 
 - **Scrum board (GitHub Projects):** [(https://github.com/users/Hassanah-dev006/projects/1)]
 
 - **Full design rationale:** [https://docs.google.com/document/d/1A-k8qb-JMTOKtzK_CQtCwIetedUqeH9p2O098XtPXPU/edit?usp=sharing]
 
-- **Entity Relationship Diagram:**[https://drive.google.com/file/d/16Q6ZZj9OsMweolz-ARHRZahhRRoAN2kJ/view?usp=drive_link]
+- - **Entity Relationship Diagram:** [`docs/erd.png`](docs/erd.png)
 
 ## Project overview
 
