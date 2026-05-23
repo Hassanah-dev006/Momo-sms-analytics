@@ -8,10 +8,12 @@ venv/
 
 
 # Data — input, output, and runtime state (ignore contents, keep folders)
+# Data — input, output, and runtime state
 data/raw/*
 !data/raw/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
+!data/processed/transactions.json
 data/logs/*.log
 data/logs/dead_letter/*
 !data/logs/dead_letter/.gitkeep
