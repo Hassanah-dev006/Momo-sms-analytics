@@ -202,3 +202,13 @@ curl -u admin:password123 -X DELETE http://localhost:8000/transactions/1682
 ```
 
 ---
+
+## Error codes
+
+| Code | Meaning | When it occurs |
+|---|---|---|
+| 200 | OK | Successful GET, PUT, DELETE |
+| 201 | Created | Successful POST |
+| 400 | Bad Request | Missing/empty body, invalid JSON, or a field fails validation |
+| 401 | Unauthorized | Missing or incorrect Basic Auth credentials |
+| 404 | Not Found | Unknown id, or a route that does not exist |
