@@ -86,3 +86,20 @@ Retrieve a single transaction by id.
 ```bash
 curl -u admin:password123 http://localhost:8000/transactions/3
 ```
+
+**Response — 200 OK**
+```json
+{
+  "id": 3,
+  "transaction_type": "PAYMENT",
+  "amount": 600.0,
+  "fee": 0.0,
+  "sender": null,
+  "receiver": "Samuel Carter",
+  "balance_after": 400.0,
+  "external_ref": "51732411227",
+  "timestamp": "2024-05-10 21:32:32",
+  "is_transaction": true,
+  "raw_body": "TxId: 51732411227. Your payment of 600 RWF ..."
+}
+```
