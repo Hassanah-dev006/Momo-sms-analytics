@@ -114,3 +114,17 @@ curl -u admin:password123 http://localhost:8000/transactions/3
 ### POST /transactions
 
 Create a new transaction. The server assigns the `id`.
+
+**Request**
+```bash
+curl -u admin:password123 -X POST http://localhost:8000/transactions \
+  -H "Content-Type: application/json" \
+  -d '{
+        "transaction_type": "PAYMENT",
+        "amount": 7500,
+        "receiver": "Test Vendor",
+        "fee": 0,
+        "timestamp": "2024-12-01 10:00:00",
+        "is_transaction": true
+      }'
+```
