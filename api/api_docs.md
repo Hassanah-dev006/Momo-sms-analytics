@@ -174,3 +174,10 @@ curl -u admin:password123 -X PUT http://localhost:8000/transactions/1682 \
   "is_transaction": true
 }
 ```
+
+**Response — 404 Not Found**
+```json
+{ "error": "Transaction not found" }
+```
+
+---
