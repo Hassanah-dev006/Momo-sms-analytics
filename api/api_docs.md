@@ -12,3 +12,10 @@ standard library (`http.server`) — no external web framework.
 All endpoints require HTTP Basic Authentication. Send an `Authorization` header
 of the form `Basic <base64(username:password)>`. With `curl`, the `-u` flag does
 this for you.
+
+Demo credentials (configured in `api/auth.py`):
+
+| Field | Value |
+|---|---|
+| username | `admin` |
+| password | `password123` |
