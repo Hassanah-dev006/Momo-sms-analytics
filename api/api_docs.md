@@ -45,3 +45,14 @@ A transaction object has the following fields:
 | `raw_body` | string | Original SMS text (provenance) |
 
 ---
+
+## Endpoints
+
+### GET /transactions
+
+List all transactions.
+
+**Request**
+```bash
+curl -u admin:password123 http://localhost:8000/transactions
+```
