@@ -212,3 +212,16 @@ curl -u admin:password123 -X DELETE http://localhost:8000/transactions/1682
 | 400 | Bad Request | Missing/empty body, invalid JSON, or a field fails validation |
 | 401 | Unauthorized | Missing or incorrect Basic Auth credentials |
 | 404 | Not Found | Unknown id, or a route that does not exist |
+
+## Notes and limitations
+
+- **State is in-memory.** All data is loaded from
+  `data/processed/transactions.json` at startup. Changes made via POST/PUT/DELETE
+  persist only until the server restarts, after which state resets to the parsed
+  dataset. This matches the assignment scope (no database write-back required for
+  this task).
+- **PUT is partial, not a full replace.** Strict REST semantics treat PUT as a
+  full replacement of the resource. We implement it as a partial update for
+  usability when testing by hand; a PATCH verb would be the stricter choice.
+- **Validation is minimal.** `amount` must be numeric and `transaction_type`, if
+  present, must be a string. The API does not enforce a full schema on POST/PUT.
