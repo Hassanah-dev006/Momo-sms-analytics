@@ -56,3 +56,24 @@ List all transactions.
 ```bash
 curl -u admin:password123 http://localhost:8000/transactions
 ```
+
+**Response — 200 OK**
+```json
+[
+  {
+    "id": 1,
+    "transaction_type": "RECEIVE",
+    "amount": 2000.0,
+    "fee": 0.0,
+    "sender": "Jane Smith",
+    "receiver": null,
+    "balance_after": 2000.0,
+    "external_ref": "76662021700",
+    "timestamp": "2024-05-10 16:30:51",
+    "is_transaction": true,
+    "raw_body": "You have received 2000 RWF from Jane Smith ..."
+  }
+]
+```
+
+---
