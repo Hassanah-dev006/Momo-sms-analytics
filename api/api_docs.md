@@ -181,3 +181,11 @@ curl -u admin:password123 -X PUT http://localhost:8000/transactions/1682 \
 ```
 
 ---
+
+### DELETE /transactions/{id}
+
+Delete a transaction by id.
+
+**Request**
+```bash
+curl -u admin:password123 -X DELETE http://localhost:8000/transactions/1682
