@@ -1,0 +1,8 @@
+{
+    "log_id": 9921,
+    "log_level": "WARN",
+    "event_type": "PARSE_PARTIAL_MATCH",
+    "transaction_id": 1048576,
+    "message": "Receiver name parsed but phone number normalization required fallback regex pattern",
+    "created_at": "2026-03-15T14:22:09Z"
+}
