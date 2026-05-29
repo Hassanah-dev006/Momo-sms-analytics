@@ -25,3 +25,23 @@ with a `WWW-Authenticate: Basic realm="MoMo API"` response header.
 
 > These credentials are hardcoded for demonstration only. See the security
 > report for why this — and Basic Auth generally — is unsuitable for production.
+
+## Data model
+
+A transaction object has the following fields:
+
+| Field | Type | Notes |
+|---|---|---|
+| `id` | integer | Server-assigned, unique, stable within a server run |
+| `transaction_type` | string | e.g. `RECEIVE`, `PAYMENT`, `TRANSFER`, `DEPOSIT`, `WITHDRAWAL` |
+| `amount` | number | Transaction amount in RWF |
+| `fee` | number | Fee charged, in RWF (0 if none) |
+| `sender` | string \| null | Sending party, where identified |
+| `receiver` | string \| null | Receiving party, where identified |
+| `balance_after` | number \| null | Account balance after the transaction |
+| `external_ref` | string \| null | MoMo Financial Transaction Id, where present |
+| `timestamp` | string | ISO-style datetime |
+| `is_transaction` | boolean | `false` for non-balance events (FAILED, REVERSAL) |
+| `raw_body` | string | Original SMS text (provenance) |
+
+---
