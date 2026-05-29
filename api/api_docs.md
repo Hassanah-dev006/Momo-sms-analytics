@@ -110,3 +110,7 @@ curl -u admin:password123 http://localhost:8000/transactions/3
 ```
 
 ---
+
+### POST /transactions
+
+Create a new transaction. The server assigns the `id`.
