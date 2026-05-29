@@ -196,3 +196,9 @@ curl -u admin:password123 -X DELETE http://localhost:8000/transactions/1682
 { "message": "Transaction deleted" }
 ```
 
+**Response — 404 Not Found**
+```json
+{ "error": "Transaction not found" }
+```
+
+---
