@@ -161,3 +161,16 @@ curl -u admin:password123 -X PUT http://localhost:8000/transactions/1682 \
   -H "Content-Type: application/json" \
   -d '{ "amount": 9999 }'
 ```
+
+**Response — 200 OK** (returns the full updated object)
+```json
+{
+  "id": 1682,
+  "transaction_type": "PAYMENT",
+  "amount": 9999,
+  "receiver": "Test Vendor",
+  "fee": 0,
+  "timestamp": "2024-12-01 10:00:00",
+  "is_transaction": true
+}
+```
