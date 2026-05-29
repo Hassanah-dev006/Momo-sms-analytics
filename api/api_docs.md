@@ -77,3 +77,12 @@ curl -u admin:password123 http://localhost:8000/transactions
 ```
 
 ---
+
+### GET /transactions/{id}
+
+Retrieve a single transaction by id.
+
+**Request**
+```bash
+curl -u admin:password123 http://localhost:8000/transactions/3
+```
