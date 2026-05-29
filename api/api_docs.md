@@ -128,3 +128,16 @@ curl -u admin:password123 -X POST http://localhost:8000/transactions \
         "is_transaction": true
       }'
 ```
+
+**Response — 201 Created** (returns the created object with its new `id`)
+```json
+{
+  "transaction_type": "PAYMENT",
+  "amount": 7500,
+  "receiver": "Test Vendor",
+  "fee": 0,
+  "timestamp": "2024-12-01 10:00:00",
+  "is_transaction": true,
+  "id": 1682
+}
+```
