@@ -141,3 +141,10 @@ curl -u admin:password123 -X POST http://localhost:8000/transactions \
   "id": 1682
 }
 ```
+
+**Response — 400 Bad Request** (invalid or empty body)
+```json
+{ "error": "Field 'amount' must be a number" }
+```
+
+---
