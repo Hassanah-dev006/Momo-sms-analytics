@@ -154,3 +154,10 @@ curl -u admin:password123 -X POST http://localhost:8000/transactions \
 Update an existing transaction. This is a **partial update**: only the fields
 included in the body are changed; all others are preserved. The `id` cannot be
 changed.
+
+**Request**
+```bash
+curl -u admin:password123 -X PUT http://localhost:8000/transactions/1682 \
+  -H "Content-Type: application/json" \
+  -d '{ "amount": 9999 }'
+```
