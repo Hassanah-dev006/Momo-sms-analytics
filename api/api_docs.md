@@ -189,3 +189,10 @@ Delete a transaction by id.
 **Request**
 ```bash
 curl -u admin:password123 -X DELETE http://localhost:8000/transactions/1682
+
+```
+**Response — 200 OK**
+```json
+{ "message": "Transaction deleted" }
+```
+
