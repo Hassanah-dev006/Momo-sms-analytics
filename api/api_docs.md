@@ -103,3 +103,10 @@ curl -u admin:password123 http://localhost:8000/transactions/3
   "raw_body": "TxId: 51732411227. Your payment of 600 RWF ..."
 }
 ```
+
+**Response — 404 Not Found**
+```json
+{ "error": "Transaction not found" }
+```
+
+---
