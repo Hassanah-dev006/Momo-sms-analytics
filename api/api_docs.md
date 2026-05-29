@@ -19,3 +19,9 @@ Demo credentials (configured in `api/auth.py`):
 |---|---|
 | username | `admin` |
 | password | `password123` |
+
+A request with a missing or incorrect credential receives `401 Unauthorized`
+with a `WWW-Authenticate: Basic realm="MoMo API"` response header.
+
+> These credentials are hardcoded for demonstration only. See the security
+> report for why this — and Basic Auth generally — is unsuitable for production.
